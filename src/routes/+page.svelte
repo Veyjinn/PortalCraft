@@ -1,14 +1,18 @@
-<section id="landing" style="background-image: url(bg_main.webp);">
+<script lang="ts">
+    import { base } from '$app/paths';
+</script>
+
+<section id="landing" style="background-image: url(./bg_main.webp);">
 	<img src="title.png" alt="" />
 	<h2>Are you ready<br />to see the other side?</h2>
 </section>
 
-<section id="content">
+<section id="content" style="background-image: url('./bg_content.png');">
 	<div>
-		<a class="minecraft-button" href="/guide"><span>JOIN THE TRIBE</span></a>
+		<a class="minecraft-button" href="{base}/guide"><span>JOIN THE TRIBE</span></a>
 	</div>
 	<div>
-		<a class="wiki-button" href="/">Motherfucking WIKI</a>
+		<a class="wiki-button" href="{base}/">Motherfucking WIKI</a>
 	</div>
 	<div style="">
 		<table>
@@ -71,7 +75,6 @@
 <style lang="scss">
 	section {
         /* https://codepen.io/tinyrebel/pen/aMYXJV */
-		background-image: url('background.png');
 		width: 100%;
         margin-top: -15rem;
 		padding: 60px 20px; // Adjust padding for sections
