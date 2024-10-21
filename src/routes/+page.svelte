@@ -1,5 +1,14 @@
 <script lang="ts">
-    import { base } from '$app/paths';
+	import { base } from '$app/paths';
+	import BlockSteps from	'$lib/components/BlockSteps/Block.svelte';
+
+	let showAside = false;
+	$:buttonText = showAside ? 'RETURN' : 'JOIN THE ADVENTURE';
+
+	function toggle_aside() {
+		showAside = !showAside;
+
+	}
 </script>
 
 <section id="landing" style="background-image: url(./bg_main.webp);">
@@ -13,12 +22,12 @@
 	<!--TODO: Add slide-in with info about server -->
 	<!--TODO: Think about adding a wiki -->
 	<!--TODO: Get inspired by vietnamese minecrft: https://www.crystalgemcraft.com/ -->
-	<div>
-		<a class="minecraft-button" href="{base}/guide"><span>JOIN THE TRIBE</span></a>
+	<div style="position: absolute;top: 20%;">
+		<a class="minecraft-button" on:click={toggle_aside}><span>{buttonText}</span></a>
 	</div>
-	<div>
+	<!--<div>
 		<a class="wiki-button" href="{base}/">Motherfucking WIKI</a>
-	</div>
+	</div>-->
 	<div style="">
 		<table>
 			<thead>
@@ -75,14 +84,23 @@
 			</tbody>
 		</table>
 	</div>
+	<aside
+		class:show={showAside}
+		style="background-image: url('./ai/2024-10-21_04-55-36_8933_upscale.png');"
+	>
+		<BlockSteps/>
+	</aside>
 </section>
 
 <style lang="scss">
 	section {
-        /* https://codepen.io/tinyrebel/pen/aMYXJV */
+		/* https://codepen.io/tinyrebel/pen/aMYXJV */
+		scroll-snap-align: start;
+		position: relative;
 		width: 100%;
-        margin-top: -15rem;
-		padding: 60px 20px; // Adjust padding for sections
+		margin-top: -15rem;
+		padding-top: 15rem;
+		gap: 6rem;
 		background-size: cover;
 		background-position: center;
 		min-height: 100vh;
@@ -94,17 +112,13 @@
 		align-items: center;
 		text-align: center;
 
-		> * {
-			margin: 2rem;
-		}
-
 		> div {
 			display: flex;
 			flex-direction: row;
 			gap: 10rem;
 		}
 		/* Blending background images */
-        /* https://stackoverflow.com/questions/67995632/how-to-fade-edges-of-background-image-of-element-to-blend-in-with-the-main-backg */
+		/* https://stackoverflow.com/questions/67995632/how-to-fade-edges-of-background-image-of-element-to-blend-in-with-the-main-backg */
 		mask-image: linear-gradient(to top, black 0%, black 100%),
 			linear-gradient(to top, transparent 0%, black 100%);
 		mask-position: center, top, right, bottom, left;
@@ -113,6 +127,36 @@
 			100% 15rem;
 		mask-repeat: no-repeat, no-repeat;
 		mask-composite: subtract, add, add, add;
+
+		aside {
+			position: absolute;
+			width: 100%;
+			height: 0%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			left: 0;
+			bottom:0;
+			background-size: cover;
+			background-position: center;
+			transition-duration: 1s;
+			overflow: clip;
+
+			mask-image: linear-gradient(to top, black 0%, black 100%),
+			linear-gradient(to top, transparent 0%, black 100%);
+			mask-position: center, top;
+			mask-size:
+				100% 100%,
+				100% 20%;
+			mask-repeat: no-repeat, no-repeat;
+			mask-composite: subtract, add;
+
+			&.show {
+				height: 80%;
+			}
+		}
 	}
 
 	#landing {
@@ -138,6 +182,10 @@
 		}
 	}
 
+	#content {
+
+	}
+
 	.minecraft-button {
 		font-family: 'MinecraftTen', sans-serif;
 		font-size: 4rem;
@@ -146,11 +194,27 @@
 		text-shadow: rgb(6, 77, 42) 0 0.1em 0;
 		color: var(--text);
 		background-color: rgb(0, 140, 69);
+		z-index: 1;
 		position: relative;
 		padding: 0 5rem;
 		width: 7em;
 		padding-bottom: 0.3em;
 		border-radius: 0.1rem;
+		transition-duration: 0.2s;
+
+		&:hover {
+			transform: translateY(-2px); /* Slight upward movement */
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a slight shadow */
+			background-color: rgb(10, 152, 80); /* Change background color slightly */
+			text-shadow: rgb(6, 77, 42) 0 0.1em 0.1em; /* Increase text shadow slightly */
+		}
+
+		&:active {
+			transition-duration: 0ms;
+			transform: translateY(2px); /* Slight downward movement */
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* Add an inner shadow */
+			background-color: rgb(0, 120, 60); /* Darken the background */
+		}
 
 		&::before {
 			content: '';
@@ -174,13 +238,13 @@
 			left: 0;
 			width: 100%;
 			height: 125%;
-			background-image: linear-gradient(rgb(39, 206, 64) 50%, rgb(6, 77, 42));
+			background-image: linear-gradient(rgb(6, 77, 42) 1% 1%, rgb(23, 154, 185));
 			z-index: -1;
 			border: 0.07em solid rgb(40, 18, 18);
-		}
 
-		&:hover {
-			background-color: rgb(10, 152, 80);
+			&:hover {
+				filter: brightness(1.1); /* Brighten the gradient slightly */
+			}
 		}
 	}
 

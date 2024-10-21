@@ -1,197 +1,272 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%sveltekit.head%
-		<style>
-			@font-face {
-				font-family: 'MinecraftTen';
-				src: url('./fonts/MinecraftTen.ttf');
-			}
-			:root {
-				/* https://www.realtimecolors.com/?colors=fbfdfe-010409-ffffff-01262d-05babd&fonts=Inter-Inter */
-				--text: #fcfdfe;
-				--background: #010409;
-				--primary: #ffffff;
-				--secondary: #01242b;
-				--accent: #05b8bb;
-				--highlight_dark: #000000;
-				--highlight_bright: #27ce40;
 
-				/* Colors RGB*/
-				--text_rgb: rgb(252, 253, 254);
-				--background_rgb: rgb(1, 4, 9);
-				--primary_rgb: rgb(255, 255, 255);
-				--secondary_rgb: rgb(1, 36, 43);
-				--accent_rgb: rgb(5, 184, 187);
-				--highlight_dark_rgb: rgb(0, 0, 0);
-				--highlight_bright_rgb: rgb(39, 206, 64);
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	%sveltekit.head%
+	<link rel="stylesheet" href="%sveltekit.assets%/css_resets.css">
+	<style>
+		@font-face {
+			font-family: 'MinecraftTen';
+			src: url('./fonts/MinecraftTen.ttf');
+		}
 
-				/* Gradients */
-				--linearPrimarySecondary: linear-gradient(#ffffff, #01242b);
-				--linearPrimaryAccent: linear-gradient(#ffffff, #05b8bb);
-				--linearSecondaryAccent: linear-gradient(#01242b, #05b8bb);
-				--radialPrimarySecondary: radial-gradient(#ffffff, #01242b);
-				--radialPrimaryAccent: radial-gradient(#ffffff, #05b8bb);
-				--radialSecondaryAccent: radial-gradient(#01242b, #05b8bb);
+		:root {
+			/* https://www.realtimecolors.com/?colors=fbfdfe-010409-ffffff-01262d-05babd&fonts=Inter-Inter */
+			--text: #fcfdfe;
+			--background: #010409;
+			--primary: #ffffff;
+			--secondary: #01242b;
+			--accent: #05b8bb;
+			--highlight_dark: #000000;
+			--highlight_bright: #27ce40;
+
+			/* Colors RGB*/
+			--text_rgb: rgb(252, 253, 254);
+			--background_rgb: rgb(1, 4, 9);
+			--primary_rgb: rgb(255, 255, 255);
+			--secondary_rgb: rgb(1, 36, 43);
+			--accent_rgb: rgb(5, 184, 187);
+			--highlight_dark_rgb: rgb(0, 0, 0);
+			--highlight_bright_rgb: rgb(39, 206, 64);
+
+			/* Gradients */
+			--linearPrimarySecondary: linear-gradient(#ffffff, #01242b);
+			--linearPrimaryAccent: linear-gradient(#ffffff, #05b8bb);
+			--linearSecondaryAccent: linear-gradient(#01242b, #05b8bb);
+			--radialPrimarySecondary: radial-gradient(#ffffff, #01242b);
+			--radialPrimaryAccent: radial-gradient(#ffffff, #05b8bb);
+			--radialSecondaryAccent: radial-gradient(#01242b, #05b8bb);
 
 
-				--column-width: 42rem;
-				--column-margin-top: 4rem;
-			
-				--font-mono: 'sans-serif'; /* TODO: Setup monospace font */
-				font-family: 'Poppins', sans-serif;
-				font-size: 62.5%;
-				margin: 0;
-			}
-			
-			/*:global(body) {
+			--column-width: 42rem;
+			--column-margin-top: 4rem;
+
+			--font-mono: 'sans-serif';
+			/* TODO: Setup monospace font */
+			font-family: 'Poppins', sans-serif;
+			font-size: 62.5%;
+			margin: 0;
+		}
+
+		* {
+			margin: 0;
+		}
+
+		/*:global(body) {
 				margin: 0;
 				
 				
 				line-height: 1.5;
 				color: #8c8c8e;
 			}*/
-			
-			html {
-				background: linear-gradient(
-					159deg,
+
+		html {
+			background: linear-gradient(159deg,
 					var(--primary-color) 0%,
 					var(--secondary-color) 80%,
-					var(--tertiary-color) 99%
-				);
-			}
-			body {
-				margin: 0;
-				padding: 0;
-				display: flex;
-				justify-content: center;
-				flex-direction: column;
-				align-items: flex-start; /* Align items to the start */
-				min-height: 100vh;
-				color: var(--text);
-				font-size: 1.6rem;
-			}
-			
-			body::before {
-				content: '';
-				width: 80vw;
-				height: 100vh;
-				position: absolute;
-				top: 0;
-				left: 0;
-				z-index: -1;
-				background: radial-gradient(
-					50% 50% at 50% 50%,
+					var(--tertiary-color) 99%);
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: flex-start;
+			/* Align items to the start */
+			min-height: 100vh;
+			color: var(--text);
+			font-size: 1.6rem;
+			overflow-x: clip;
+			scroll-snap-type: y mandatory;
+		}
+
+		body::before {
+			content: '';
+			width: 80vw;
+			height: 100vh;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			background: radial-gradient(50% 50% at 50% 50%,
 					var(--pure-white) 0%,
-					rgba(255, 255, 255, 0) 100%
-				);
-				opacity: 0.05;
-			}
+					rgba(255, 255, 255, 0) 100%);
+			opacity: 0.05;
+		}
 
-			body > div {
-				max-width: 1080px;
-				width: 100%;
-				padding: 20px;
-				margin: 20px 0; /* Space between sections */
-				background-color: var(--background); /* Optional container background */
-				border-radius: 10px; /* Rounded corners */
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-			}
-			
-			@media (max-width: 768px) {
-				body > div {
-					padding: 15px;
-				}
-			}
+		body>div {
+			max-width: 1080px;
+			width: 100%;
+			padding: 20px;
+			margin: 20px 0;
+			/* Space between sections */
+			background-color: var(--background);
+			/* Optional container background */
+			border-radius: 10px;
+			/* Rounded corners */
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+		}
 
-			@media (max-width: 480px) {
-				body > div {
-					padding: 10px;
-				}
+		@media (max-width: 768px) {
+			body>div {
+				padding: 15px;
 			}
-			
-			::-webkit-scrollbar {
-				width: 1rem;
-				-webkit-appearance: none;
-				background: linear-gradient( 159deg, var(--primary-color) 0%, var(--secondary-color) 80%, var(--tertiary-color) 99% );
-			}
-			::-webkit-scrollbar-track {
-				border-radius: 10px;
-				background-color: transparent;
-			}
-			::-webkit-scrollbar-thumb {
-				background-color: #233140;
-				border-radius: 10px;
-				border: 0;
-			}
-			::-webkit-scrollbar-corner {
-				background: rgba(0,0,0,0);
-			}
-			::-webkit-scrollbar-track-piece {
-				background: rgba(0,0,0,0);
-			}
-			
-			p {
-				font-weight: 400;
-				line-height: 1.5;
-			}
-			
-			h1, h2, h3, h4, h5, h6, p > span {
-				margin: 0;
-				line-height: 1.5;
-				color: var(--text);
-			}
-			
-			h1 {
-			}
-			
-			h2 {
-				font-weight: 600;
-			}
-			
-			h3 {
-				font-weight: 600;
-			}
-			
-			a {
-				color: var(--accent);
-				text-decoration: none;
-				-webkit-transition: .4s ease-in-out;
-				transition: .4s ease-in-out;
-			}
-			
-			a > * {
-				color: var(--text);
-				text-decoration: none;
-			}
-			
-			a:hover {
-				color: var(--heading-color);
-				-webkit-transition: .4s ease-in-out;
-				transition: .4s ease-in-out;
-			}
-			
-			pre {
-				font-size: 16px;
-				font-family: var(--font-mono);
-				background-color: rgba(255, 255, 255, 0.45);
-				border-radius: 3px;
-				box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-				padding: 0.5em;
-				overflow-x: auto;
-				color: var(--text);
-			}
+		}
 
-			/* Media query to Detect if the device is mobile or in super small window */
-			@media (pointer: coarse) or (orientation: portrait) or (max-width: 60em) {
-				/* TODO: Adapt stuff for mobile display */
+		@media (max-width: 480px) {
+			body>div {
+				padding: 10px;
 			}
-		</style>
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+		}
+
+		::-webkit-scrollbar {
+			width: 1rem;
+			-webkit-appearance: none;
+			background: linear-gradient(159deg, var(--primary-color) 0%, var(--secondary-color) 80%, var(--tertiary-color) 99%);
+		}
+
+		::-webkit-scrollbar-track {
+			border-radius: 10px;
+			background-color: transparent;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background-color: #233140;
+			border-radius: 10px;
+			border: 0;
+		}
+
+		::-webkit-scrollbar-corner {
+			background: rgba(0, 0, 0, 0);
+		}
+
+		::-webkit-scrollbar-track-piece {
+			background: rgba(0, 0, 0, 0);
+		}
+
+		p {
+			font-weight: 400;
+			line-height: 1.5;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p>span {
+			margin: 0;
+			line-height: 1.5;
+			color: var(--text);
+		}
+
+		h1 {}
+
+		h2 {
+			font-weight: 600;
+		}
+
+		h3 {
+			font-weight: 600;
+		}
+
+		a {
+			color: var(--accent);
+			text-decoration: none;
+			-webkit-transition: .4s ease-in-out;
+			transition: .4s ease-in-out;
+		}
+
+		a>* {
+			color: var(--text);
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: var(--heading-color);
+			-webkit-transition: .4s ease-in-out;
+			transition: .4s ease-in-out;
+		}
+
+		button {
+			text-decoration: none;
+			font-size: 20px;
+			font-family: monospace;
+			color: #fff;
+			background: linear-gradient(to left, #6DD5FA, #2980B9, #6DD5FA);
+			margin-right: 30px;
+			padding: 1.5em 4em;
+			border-radius: 1em;
+			background-size: 200%;
+			transition: 0.5s;
+		}
+
+		button.btn-blue {
+			background: linear-gradient(to left, #6DD5FA, #2980B9, #6DD5FA);
+			margin-right: 30px;
+			padding: 1.5em 4em;
+			border-radius: 1em;
+			background-size: 200%;
+			transition: 0.7s;
+			-webkit-box-shadow: 11px 10px 8px 0px rgba(0, 210, 255, 0.2);
+			-moz-box-shadow: 11px 10px 8px 0px rgba(0, 210, 255, 0.2);
+			box-shadow: 11px 10px 8px 0px rgba(0, 210, 255, 0.2);
+		}
+
+		button.btn-neon {
+			background: linear-gradient(to left, #12c2e9, #c471ed, #f64f59);
+			margin-right: 30px;
+			padding: 1.5em 4em;
+			border-radius: 1em;
+			background-size: 200%;
+			transition: 0.7s;
+			-webkit-box-shadow: 11px 10px 8px 0px rgba(246, 79, 89, 0.2);
+			-moz-box-shadow: 11px 10px 8px 0px rgba(246, 79, 89, 0.2);
+			box-shadow: 11px 10px 8px 0px rgba(246, 79, 89, 0.2);
+		}
+
+		button.btn-pink {
+			background: linear-gradient(to left, #f953c6, #b91d73, #f953c6);
+			margin-right: 30px;
+			padding: 1.5em 4em;
+			border-radius: 1em;
+			background-size: 200%;
+			transition: 0.7s;
+			-webkit-box-shadow: 11px 10px 8px 0px rgba(255, 0, 248, 0.2);
+			-moz-box-shadow: 11px 10px 8px 0px rgba(255, 0, 248, 0.2);
+			box-shadow: 11px 10px 8px 0px rgba(255, 0, 248, 0.2);
+		}
+
+		button:hover {
+			background-position: right;
+		}
+
+		pre {
+			font-size: 16px;
+			font-family: var(--font-mono);
+			background-color: rgba(255, 255, 255, 0.45);
+			border-radius: 3px;
+			box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
+			padding: 0.5em;
+			overflow-x: auto;
+			color: var(--text);
+		}
+
+		/* Media query to Detect if the device is mobile or in super small window */
+		@media (pointer: coarse) or (orientation: portrait) or (max-width: 60em) {
+			/* TODO: Adapt stuff for mobile display */
+		}
+	</style>
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">%sveltekit.body%</div>
+</body>
+
 </html>
