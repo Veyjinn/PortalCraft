@@ -95,7 +95,6 @@
 <style lang="scss">
 	section {
 		/* https://codepen.io/tinyrebel/pen/aMYXJV */
-		scroll-snap-align: start;
 		position: relative;
 		width: 100%;
 		margin-top: -15rem;
