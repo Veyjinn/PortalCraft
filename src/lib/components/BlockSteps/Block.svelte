@@ -288,16 +288,18 @@
 					color: var(--orange);
 				}
 
-				mask-image: linear-gradient(to top, black 0%, black 100%),
-					linear-gradient(to bottom right, transparent 0%, black 100%);
+				mask-image: linear-gradient(to top, #000, #000), linear-gradient(to top left, black 60%, transparent 60%), linear-gradient(to top left,black 40%, transparent 62%);
 				mask-position:
 					center,
+					bottom right,
 					bottom right;
 				mask-size:
 					100% 100%,
-					50% 25%;
-				mask-repeat: no-repeat, no-repeat;
+					80% 72%,
+					80% 72%;
+				mask-repeat: no-repeat, no-repeat, no-repeat;
 				mask-composite: subtract, add, add, add;
+				transition: .5s;
 			}
 			.coverWrap {
 				transform: rotate(130deg);
@@ -354,8 +356,18 @@
 	}
 
 	// I like the curved version too, so I made it a hover for fun.
-	ul.infoGraphic li:hover .coverWrap .numberCover {
-		border-radius: 100%;
+	ul.infoGraphic li:hover {
+		.numberWrap .number{
+			mask-size:
+				100% 100%,
+				55% 36%,
+				80% 72%;
+		}
+		.coverWrap .numberCover {
+			border-radius: 100%;
+		}
+
+
 	}
 
 	/////////////////////////////////////
