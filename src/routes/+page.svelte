@@ -102,7 +102,8 @@
 		gap: 6rem;
 		background-size: cover;
 		background-position: center;
-		min-height: 100vh;
+		height: 100vh;
+		min-height: 100vh; // Full viewport height
 		text-align: center;
 
 		display: flex;
@@ -110,6 +111,9 @@
 		justify-content: center;
 		align-items: center;
 		text-align: center;
+
+		scroll-snap-align: start;
+		scroll-margin-top: -15rem;
 
 		> div {
 			display: flex;
@@ -163,7 +167,6 @@
 		flex-direction: column;
 		justify-content: center; // Center vertically
 		align-items: center; // Center horizontally
-		height: 100vh; // Full viewport height
 		text-align: center; // Center align text
 
 		img {
