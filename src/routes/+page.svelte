@@ -8,6 +8,11 @@
 </section>
 
 <section id="content" style="background-image: url('./bg_content.png');">
+	<!--TODO: Use this to fluidly reveal parts of the background image, to make it more appealing/dynamic
+	https://codepen.io/tinyrebel/pen/aMYXJV-->
+	<!--TODO: Add slide-in with info about server -->
+	<!--TODO: Think about adding a wiki -->
+	<!--TODO: Get inspired by vietnamese minecrft: https://www.crystalgemcraft.com/ -->
 	<div>
 		<a class="minecraft-button" href="{base}/guide"><span>JOIN THE TRIBE</span></a>
 	</div>
@@ -98,7 +103,8 @@
 			flex-direction: row;
 			gap: 10rem;
 		}
-		/* for browsers which have implemented the official spec */
+		/* Blending background images */
+        /* https://stackoverflow.com/questions/67995632/how-to-fade-edges-of-background-image-of-element-to-blend-in-with-the-main-backg */
 		mask-image: linear-gradient(to top, black 0%, black 100%),
 			linear-gradient(to top, transparent 0%, black 100%);
 		mask-position: center, top, right, bottom, left;
