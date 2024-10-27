@@ -16,6 +16,10 @@
 	<h2>Are you ready<br />to see the other side?</h2>
 </section>
 
+<section id="trailer" style="background-image: url(./dimensional_rift-Anton_Ninov.jpg);">
+	<iframe style="aspect-ratio: 16 / 9; width: 80%;" src="https://www.youtube.com/embed/9wDEQTP0R3g?si=g-kXlXBtaxbnRnLk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</section>
+
 <section id="content" style="background-image: url('./bg_content.png');">
 	<!--TODO: Use this to fluidly reveal parts of the background image, to make it more appealing/dynamic
 	https://codepen.io/tinyrebel/pen/aMYXJV-->
