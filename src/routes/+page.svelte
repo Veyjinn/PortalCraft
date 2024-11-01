@@ -1,23 +1,33 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import BlockSteps from	'$lib/components/BlockSteps/Block.svelte';
+	import BlockSteps from '$lib/components/BlockSteps/Block.svelte';
+	import ScrollArrow from '$lib/components/ScrollArrow.svelte';
 
 	let showAside = false;
-	$:buttonText = showAside ? 'RETURN' : 'JOIN THE ADVENTURE';
+	$: buttonText = showAside ? 'RETURN' : 'JOIN THE ADVENTURE';
 
 	function toggle_aside() {
 		showAside = !showAside;
-
 	}
 </script>
 
 <section id="landing" style="background-image: url(./bg_main.webp);">
 	<img src="title.png" alt="" />
 	<h2>Are you ready<br />to see the other side?</h2>
+	<ScrollArrow/>
 </section>
 
 <section id="trailer" style="background-image: url(./dimensional_rift-Anton_Ninov.jpg);">
-	<iframe style="aspect-ratio: 16 / 9; width: 80%;" src="https://www.youtube.com/embed/9wDEQTP0R3g?si=g-kXlXBtaxbnRnLk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	<iframe
+		style="aspect-ratio: 16 / 9; width: 80%;"
+		src="https://www.youtube.com/embed/9wDEQTP0R3g?si=g-kXlXBtaxbnRnLk"
+		title="YouTube video player"
+		frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		referrerpolicy="strict-origin-when-cross-origin"
+		allowfullscreen
+	></iframe>
+	<ScrollArrow/>
 </section>
 
 <section id="content" style="background-image: url('./bg_content.png');">
@@ -92,7 +102,7 @@
 		class:show={showAside}
 		style="background-image: url('./ai/2024-10-21_04-55-36_8933_upscale.png');"
 	>
-		<BlockSteps/>
+		<BlockSteps />
 	</aside>
 </section>
 
@@ -145,7 +155,7 @@
 			align-items: center;
 			text-align: center;
 			left: 0;
-			bottom:0;
+			bottom: 0;
 			background-size: cover;
 			background-position: center;
 			transition-duration: 1s;
