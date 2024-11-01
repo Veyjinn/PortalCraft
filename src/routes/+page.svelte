@@ -37,7 +37,9 @@
 	<!--TODO: Think about adding a wiki -->
 	<!--TODO: Get inspired by vietnamese minecrft: https://www.crystalgemcraft.com/ -->
 	<div style="position: absolute;top: 20%;">
-		<a class="minecraft-button" on:click={toggle_aside}><span>{buttonText}</span></a>
+		<div class="animated-shadow minecraft-button" on:click={toggle_aside}>
+			<span>{buttonText}</span>
+		</div>
 	</div>
 	<!--<div>
 		<a class="wiki-button" href="{base}/">Motherfucking WIKI</a>
@@ -162,7 +164,7 @@
 			overflow: clip;
 
 			mask-image: linear-gradient(to top, black 0%, black 100%),
-			linear-gradient(to top, transparent 0%, black 100%);
+				linear-gradient(to top, transparent 0%, black 100%);
 			mask-position: center, top;
 			mask-size:
 				100% 100%,
@@ -199,7 +201,6 @@
 	}
 
 	#content {
-
 	}
 
 	.minecraft-button {
@@ -261,6 +262,58 @@
 			&:hover {
 				filter: brightness(1.1); /* Brighten the gradient slightly */
 			}
+		}
+	}
+
+	.rainbow-button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		color: #fff;
+		text-align: center;
+		font-size: 50px;
+		font-weight: bold;
+		background: linear-gradient(0deg, #000, #262626);
+	}
+	.animated-shadow:before,
+	.animated-shadow:after {
+		content: '';
+		position: absolute;
+		top: -2px;
+		left: -2px;
+		background: linear-gradient(
+		45deg,
+		#fb0094,
+		#0000ff,
+		#00ff00,
+		#ffff00,
+		#ff0000,
+		#fb0094,
+		#0000ff,
+		#00ff00,
+		#ffff00,
+		#ff0000);
+		background-size: 400%;
+		width: calc(100% + 4px);
+		height: calc(100% + 4px);
+		z-index: -1;
+		animation: animate 20s linear infinite;
+	}
+
+	.animated-shadow:after {
+		filter: blur(20px);
+	}
+
+	@keyframes animate {
+		0% {
+			background-position: 0 0;
+		}
+		50% {
+			background-position: 300% 0;
+		}
+		100% {
+			background-position: 10% 10%;
 		}
 	}
 
